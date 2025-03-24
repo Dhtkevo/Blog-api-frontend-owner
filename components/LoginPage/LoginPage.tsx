@@ -12,7 +12,7 @@ function LoginPage() {
         <div className="flex items-center gap-2">
           <label htmlFor="username">Username: </label>
           <input
-            className="bg-white p-2 rounded-md"
+            className="bg-white p-2 rounded-md border border-black"
             type="text"
             name="username"
             required
@@ -21,7 +21,7 @@ function LoginPage() {
         <div className="flex items-center gap-2">
           <label htmlFor="password">Password: </label>
           <input
-            className="bg-white p-2 rounded-md"
+            className="bg-white p-2 rounded-md border border-black"
             type="password"
             name="password"
             required
