@@ -1,14 +1,12 @@
 import "./App.css";
+import { useState } from "react";
 import LoginPage from "../components/LoginPage/LoginPage";
 import PostContainer from "../components/PostsContainer/PostsContainer";
 
 function App() {
-  //<LoginPage />
-  return (
-    <>
-      <PostContainer />
-    </>
-  );
+  const [token, setToken] = useState("");
+
+  return <>{token ? <PostContainer /> : <LoginPage login={setToken} />}</>;
 }
 
 export default App;
