@@ -6,7 +6,11 @@ import PostContainer from "../components/PostsContainer/PostsContainer";
 function App() {
   const [token, setToken] = useState("");
 
-  return <>{token ? <PostContainer /> : <LoginPage login={setToken} />}</>;
+  return (
+    <>
+      {token ? <PostContainer token={token} /> : <LoginPage login={setToken} />}
+    </>
+  );
 }
 
 export default App;

@@ -10,14 +10,14 @@ interface CustomResponse extends Response {
 }
 
 interface LoginPageProps {
-  login: Function;
+  login: (token: string) => void;
 }
 
 function LoginPage({ login }: LoginPageProps) {
   const [usernameField, setUsernameField] = useState("");
   const [passwordField, setPasswordField] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     let response: CustomResponse = await fetch(
@@ -37,7 +37,7 @@ function LoginPage({ login }: LoginPageProps) {
     response = await response.json();
 
     if (response.user) {
-      login(response.accessToken);
+      login(response.accessToken!);
     }
   };
 
@@ -47,6 +47,7 @@ function LoginPage({ login }: LoginPageProps) {
         method=""
         action=""
         className="bg-gray-100 shadow-lg rounded-2xl border border-amber-200 flex flex-col gap-8 items-center justify-center w-1/2 h-1/2"
+        onSubmit={handleLogin}
       >
         <h1 className="font-bold text-4xl">Sign In</h1>
         <div className="flex items-center gap-2">
@@ -71,10 +72,7 @@ function LoginPage({ login }: LoginPageProps) {
             required
           />
         </div>
-        <button
-          onClick={handleLogin}
-          className="hover:cursor-pointer hover:bg-gray-300 bg-amber-200 shadow-lg rounded-lg py-2 px-4 w-1/2"
-        >
+        <button className="hover:cursor-pointer hover:bg-gray-300 bg-amber-200 shadow-lg rounded-lg py-2 px-4 w-1/2">
           Sign In
         </button>
       </form>

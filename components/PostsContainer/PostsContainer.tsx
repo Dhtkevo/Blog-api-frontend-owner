@@ -10,7 +10,11 @@ interface Posts {
   createdAt: string;
 }
 
-export default function PostsContainer() {
+interface PostsContainerProps {
+  token: string;
+}
+
+export default function PostsContainer({ token }: PostsContainerProps) {
   const [posts, setPosts] = useState<Posts[]>([]);
 
   useEffect(() => {
@@ -22,9 +26,11 @@ export default function PostsContainer() {
   const postItems = posts.map((post) => (
     <PostCard
       key={post.id}
+      id={post.id}
       title={post.title}
       content={post.content}
       createdAt={post.createdAt}
+      token={token}
     />
   ));
 
